@@ -1,27 +1,12 @@
 import { getMode, default as Header } from "./Components/Header/Header";
 import GradientViewer from "Components/GradientViewer/viewer";
 import GradientControls from "Components/GradientControls/GradientControls";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import {
   generateLinearGradient,
   generateRadialGradient,
 } from "generateGradientCode";
-// let controls = [
-//   {
-//     color: "blue",
-//     stop: 0,
-//   },
-//   {
-//     color: "green",
-//     stop: 50,
-//   },
-//   {
-//     color: "red",
-//     stop: 100,
-//   },
-// ];
-
 let controls: { color: string; stop: number }[],
   setControls: React.Dispatch<
     React.SetStateAction<
@@ -30,10 +15,12 @@ let controls: { color: string; stop: number }[],
         stop: number;
       }[]
     >
-  >,
-  updateGradient: () => void;
+  >;
 
+let mode: string, setMode: React.Dispatch<React.SetStateAction<string>>;
 const App = () => {
+  [mode, setMode] = useState("radial");
+
   [controls, setControls] = useState([
     {
       color: "blue",
@@ -50,7 +37,7 @@ const App = () => {
   ]);
   const [gradientCode, setGradientCode] = useState("");
 
-  updateGradient = () => {
+  useEffect(() => {
     let mode = getMode();
     setGradientCode(
       mode === "radial"
@@ -64,21 +51,17 @@ const App = () => {
             angle: 90,
           })
     );
-  };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [controls, mode]);
 
   return (
     <div id="App">
       <Header />
       <GradientViewer gradientCode={gradientCode} />
-      <GradientControls
-        controls={controls}
-        setControls={(controls) => {
-          setControls(controls);
-          updateGradient();
-        }}
-      />
+      <GradientControls />
     </div>
   );
 };
 export default App;
-export const update = () => updateGradient();
+
+export { mode, setMode, controls, setControls };

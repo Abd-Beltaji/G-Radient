@@ -13,21 +13,25 @@
     height: 3em;
     width: 90vw;
     border-radius: 0.5em;
+    border: solid 0.2em #fff;
+    box-shadow: 0 0 0 4px #111;
   }
   .controls {
     position: relative;
     height: 3em;
     width: 90vw;
     transform: translateY(-100%);
+    cursor: pointer;
+
     .control {
       display: inline-block;
-      width: 1%;
+      width: 0.8em;
       height: 120%;
       border-radius: 10em;
       background-color: blue;
       border: solid 0.152em #fff;
       box-shadow: 0 0 0 4px #111;
-      cursor: pointer;
+      cursor: move;
       position: absolute;
       top: 50%;
       transform: translate(-50%, -50%);
@@ -41,23 +45,23 @@
         bottom: 0;
         left: 50%;
         transform: translate(-50%, 210%) rotate(45deg);
-        background: #444 ;
+        background: #444;
       }
       &:after {
-        content: attr(data-value);
+        content: attr(data-value) "%";
         //   background: #FECC13;
         background: #fff;
         border: solid 2px #444;
-        color:#222;
+        color: #222;
         padding: 0.4em 0.6em;
         position: absolute;
         font-size: 0.8em;
         top: 50%;
         left: 50%;
         transform: translate(-50%, 130%);
-        border-radius: 0.5em;
+        border-radius: 0.8em;
         font-weight: bold;
-        box-shadow: rgba(0, 0, 0, 0.411) 0 1px 4px;
+        box-shadow: rgba(0, 0, 0, 0.212) 0 1px 4px;
       }
     }
   }

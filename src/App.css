@@ -5,8 +5,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: 'Comfortaa';
-  transition: all 0.3s ease-in-out; }
+  font-family: 'Comfortaa'; }
 
 body {
   overflow-x: hidden; }

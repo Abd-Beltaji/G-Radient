@@ -1,33 +1,26 @@
 import { useState, FC, useEffect } from "react";
 import { generateLinearGradient } from "generateGradientCode";
 import "./GradientControls.css";
+import { controls, setControls } from "App";
 interface IControlElement {
   color: string;
   stop: number;
-  setControls: React.Dispatch<
-    React.SetStateAction<
-      {
-        color: string;
-        stop: number;
-      }[]
-    >
-  >;
   index: number;
   setGradient: React.Dispatch<React.SetStateAction<string>>;
 }
 interface IGradientControls {
-  controls: {
-    color: string;
-    stop: number;
-  }[];
-  setControls: React.Dispatch<
-    React.SetStateAction<
-      {
-        color: string;
-        stop: number;
-      }[]
-    >
-  >;
+  //   controls: {
+  //     color: string;
+  //     stop: number;
+  //   }[];
+  //   setControls: React.Dispatch<
+  //     React.SetStateAction<
+  //       {
+  //         color: string;
+  //         stop: number;
+  //       }[]
+  //     >
+  //   >;
 }
 
 const clamp = (value: number, min: number, max: number): number => {
@@ -37,7 +30,6 @@ const clamp = (value: number, min: number, max: number): number => {
 const ControlElement: FC<IControlElement> = ({
   color,
   stop,
-  setControls,
   index,
   setGradient,
 }) => {
@@ -46,15 +38,17 @@ const ControlElement: FC<IControlElement> = ({
 
   useEffect(() => {
     setControls((controls) => {
-      controls[index].stop = stopValue;
-      setGradient(
-        generateLinearGradient({
-          angle: 90,
-          colors: controls,
-        })
+      //   controls[index].stop = stopValue;
+      return controls.map((c, i) =>
+        i == index ? { color: c.color, stop: stopValue } : c
       );
-      return controls;
     });
+    setGradient(
+      generateLinearGradient({
+        angle: 90,
+        colors: controls,
+      })
+    );
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stopValue]);
@@ -78,6 +72,8 @@ const ControlElement: FC<IControlElement> = ({
     document.addEventListener("mouseup", () => {
       setActive(false);
     });
+
+    document.body.addEventListener("mouseleave", () => setActive(false));
   }, []);
   return (
     <div
@@ -86,15 +82,15 @@ const ControlElement: FC<IControlElement> = ({
         backgroundColor: color,
         left: `${stopValue}%`,
       }}
-      onMouseDown={(evt) => setActive(true)}
-      onMouseUp={(evt) => setActive(false)}
+      onMouseDown={() => setActive(true)}
+      onMouseUp={() => setActive(false)}
       draggable="false"
       onDragStart={(evt) => evt.preventDefault()}
       data-value={stopValue}
     ></div>
   );
 };
-const GradientControls: FC<IGradientControls> = ({ controls, setControls }) => {
+const GradientControls: FC<IGradientControls> = () => {
   let [gradientCode, setgradientCode] = useState(
     `linear-gradient(90deg ,blue 0%, green 50%, red 100%)`
   );
@@ -114,7 +110,6 @@ const GradientControls: FC<IGradientControls> = ({ controls, setControls }) => {
               color={control.color}
               stop={control.stop}
               key={i}
-              setControls={setControls}
               index={i}
               setGradient={setgradientCode}
             />

@@ -1,45 +1,38 @@
-import GradiantLogo from 'assets/svg/Gradiant.svg'
-import './Header.css'
+import GradiantLogo from "assets/svg/Gradiant.svg";
+import "./Header.css";
 
-import { ReactComponent as RadialIcon } from 'assets/svg/modes/radial.svg'
-import { ReactComponent as LinearIcon } from 'assets/svg/modes/linear.svg'
-import { ReactComponent as MeshIcon } from 'assets/svg/modes/mesh.svg'
-import { useState, useEffect } from 'react'
+import { ReactComponent as RadialIcon } from "assets/svg/modes/radial.svg";
+import { ReactComponent as LinearIcon } from "assets/svg/modes/linear.svg";
+import { ReactComponent as MeshIcon } from "assets/svg/modes/mesh.svg";
 
-import {update} from 'App'
-
-let mode: string, setMode: React.Dispatch<React.SetStateAction<string>>
+import { mode, setMode } from "App";
 
 const ModeButtons = () => {
-  useEffect(()=>{
-    update()
-  },[mode])
   return (
     <div className="modeChanger">
       <div
-        className={`mode ${mode === 'radial' ? 'active' : ''}`}
-        onClick={() => setMode('radial')}
+        className={`mode ${mode === "radial" ? "active" : ""}`}
+        onClick={() => setMode("radial")}
       >
         <RadialIcon />
       </div>
       <div
-        className={`mode ${mode === 'linear' ? 'active' : ''}`}
-        onClick={() => setMode('linear')}
+        className={`mode ${mode === "linear" ? "active" : ""}`}
+        onClick={() => setMode("linear")}
       >
         <LinearIcon />
       </div>
       <div
-        className={`mode ${mode === 'mesh' ? 'active' : ''}`}
-        onClick={() => setMode('mesh')}
+        className={`mode ${mode === "mesh" ? "active" : ""}`}
+        onClick={() => setMode("mesh")}
       >
         <MeshIcon />
       </div>
     </div>
-  )
-}
+  );
+};
 
 const Header = () => {
-  ;[mode, setMode] = useState('radial')
   return (
     <header>
       <img src={GradiantLogo} alt="Gradiant" draggable="false" />
@@ -48,7 +41,7 @@ const Header = () => {
         <ModeButtons />
       </div>
     </header>
-  )
-}
-export default Header
-export const getMode = () => mode
+  );
+};
+export default Header;
+export const getMode = () => mode;
