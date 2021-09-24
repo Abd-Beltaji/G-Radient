@@ -1,0 +1,64 @@
+#gradientControls {
+  background: #fff;
+  height: 9em;
+  border-radius: 2em;
+  margin: 0 1em;
+  transform: translateY(-50%);
+  filter: drop-shadow(rgba(0, 0, 0, 0.27) 0 1px 4px);
+  position: relative;
+
+  padding: 3em;
+
+  .gradientView {
+    height: 3em;
+    width: 90vw;
+    border-radius: 0.5em;
+  }
+  .controls {
+    position: relative;
+    height: 3em;
+    width: 90vw;
+    transform: translateY(-100%);
+    .control {
+      display: inline-block;
+      width: 1%;
+      height: 120%;
+      border-radius: 10em;
+      background-color: blue;
+      border: solid 0.152em #fff;
+      box-shadow: 0 0 0 4px #111;
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      filter: drop-shadow(rgba(0, 0, 0, 0.671) 0 1px 4px);
+      transition: 0s;
+      &:before {
+        content: "";
+        height: 0.5em;
+        width: 0.5em;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 210%) rotate(45deg);
+        background: #444 ;
+      }
+      &:after {
+        content: attr(data-value);
+        //   background: #FECC13;
+        background: #fff;
+        border: solid 2px #444;
+        color:#222;
+        padding: 0.4em 0.6em;
+        position: absolute;
+        font-size: 0.8em;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 130%);
+        border-radius: 0.5em;
+        font-weight: bold;
+        box-shadow: rgba(0, 0, 0, 0.411) 0 1px 4px;
+      }
+    }
+  }
+}
