@@ -29,7 +29,7 @@ const App = () => {
 
   [controls, setControls] = useState([
     {
-      color: "#09f",
+      color: "#0099ff",
       stop: 0,
     },
     {

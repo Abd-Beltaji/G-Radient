@@ -1,0 +1,76 @@
+#colorPicker {
+  display: flex;
+  justify-content: space-around; }
+
+#colorPicker .controlsArea {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  align-items: stretch; }
+
+#colorPicker .controlsArea div {
+  flex: 100; }
+
+#colorPicker .controlsArea .colorValues {
+  background-color: yellow; }
+
+#colorPicker .controlsArea .hue {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative; }
+
+#colorPicker .controlsArea .hue .hueController {
+  height: 75%;
+  width: 100%;
+  margin: 0 0.3em;
+  background: linear-gradient(to right, red 0%, #ff0 17%, lime 33%, cyan 50%, blue 66%, #f0f 83%, red 100%);
+  border-radius: 0.5em;
+  filter: drop-shadow(rgba(0, 0, 0, 0.5) 1px 6px 10px);
+  border: solid 0.152em #fff;
+  box-shadow: 0 0 0 4px #111; }
+
+#colorPicker .controlsArea .hue .hueController .pointer {
+  display: inline-block;
+  width: 0.6em;
+  height: 120%;
+  border-radius: 10em;
+  background-color: red;
+  border: solid 0.152em #fff;
+  box-shadow: 0 0 0 4px #111;
+  cursor: move;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(rgba(0, 0, 0, 0.671) 0 1px 4px);
+  transition: 0s; }
+
+#colorPicker .controlsArea .opacity {
+  background-color: purple; }
+
+#colorPicker .colorArea {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+#colorPicker .colorArea .colorGradient {
+  border-radius: 0.5em;
+  height: 95%;
+  width: 95%;
+  background-color: #0000ff;
+  background-image: linear-gradient(to top, #000, #ffffff00), linear-gradient(to right, #fff, #ffffff00);
+  filter: drop-shadow(rgba(0, 0, 0, 0.5) 1px 6px 10px); }
+
+#colorPicker .colorArea .colorGradient .pointer {
+  height: 0.7em;
+  width: 0.7em;
+  border: solid 2px #fff;
+  border-radius: 1em;
+  box-shadow: #000 0 0 0 3px;
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(rgba(0, 0, 0, 0.5) 1px 6px 10px); }

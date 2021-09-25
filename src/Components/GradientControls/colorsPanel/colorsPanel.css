@@ -1,3 +1,6 @@
+.colorsPanel {
+  flex: 50; }
+
 .colorsPanel .control.active {
   background-color: #ececec;
   border: solid 1px #c2c2c2; }
@@ -27,7 +30,7 @@
   background-color: transparent; }
 
 .colorsPanel .control input.stop {
-  width: 3em; }
+  width: 3.5em; }
 
 .colorsPanel .control input.color {
   width: 5.5em; }

@@ -11,7 +11,7 @@ import {
 } from "App";
 
 import ColorsPanel from "./colorsPanel/colorsPanel";
-
+import ColorPicker from './colorPicker/colorPicker'
 interface IControlElement {
   color: string;
   stop: number;
@@ -68,6 +68,18 @@ const ControlElement: FC<IControlElement> = ({ color, stop, index }) => {
         left: `${stopValue}%`,
       }}
       onMouseDown={() => {
+        setControlElements(() => {
+          return controls.map((control, i) => {
+            return (
+              <ControlElement
+                color={control.color}
+                stop={control.stop}
+                key={`${control.stop}-${control.color}-i`}
+                index={i}
+              />
+            );
+          });
+        });
         setActive(true);
         setActiveControlIndex(index);
       }}
@@ -98,14 +110,13 @@ const GradientControls: FC = () => {
   }, []);
 
   useEffect(() => {
-    console.table(controls);
     setgradientCode(
       generateLinearGradient({
         angle: 90,
         colors: controls,
       })
     );
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [controls]);
   return (
     <div id="allControls">
@@ -120,6 +131,7 @@ const GradientControls: FC = () => {
       </div>
       <div className="otherControls">
         <ColorsPanel />
+        <ColorPicker />
       </div>
     </div>
   );
