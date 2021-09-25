@@ -1,0 +1,33 @@
+.colorsPanel .control.active {
+  background-color: #ececec;
+  border: solid 1px #c2c2c2; }
+
+.colorsPanel .control {
+  padding: 0.5em;
+  border-radius: 1em;
+  display: flex;
+  align-items: center;
+  gap: 0.5em; }
+
+.colorsPanel .control .colorView {
+  height: 2em;
+  width: 2em;
+  border-radius: 0.5em;
+  margin: 0.5em 0; }
+
+.colorsPanel .control input {
+  padding: 0.2em 0.5em;
+  text-align: center;
+  border-radius: 0.3em;
+  border: solid 1px #444;
+  height: 100%;
+  font-weight: bold;
+  height: 2em;
+  font-size: 1em;
+  background-color: transparent; }
+
+.colorsPanel .control input.stop {
+  width: 3em; }
+
+.colorsPanel .control input.color {
+  width: 5.5em; }

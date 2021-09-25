@@ -1,4 +1,4 @@
-import GradiantLogo from "assets/svg/Gradiant.svg";
+import { ReactComponent as GradiantLogo } from "assets/svg/Gradiant.svg";
 import "./Header.css";
 
 import { ReactComponent as RadialIcon } from "assets/svg/modes/radial.svg";
@@ -23,8 +23,8 @@ const ModeButtons = () => {
         <LinearIcon />
       </div>
       <div
-        className={`mode ${mode === "mesh" ? "active" : ""}`}
-        onClick={() => setMode("mesh")}
+        className={`mode ${mode === "mesh" ? "active" : ""} soon`}
+        // onClick={() => setMode("mesh")}
       >
         <MeshIcon />
       </div>
@@ -35,7 +35,8 @@ const ModeButtons = () => {
 const Header = () => {
   return (
     <header>
-      <img src={GradiantLogo} alt="Gradiant" draggable="false" />
+      {/* <img src={GradiantLogo} alt="Gradiant" draggable="false" /> */}
+      <GradiantLogo className="logo" />
       <div>
         Gradient mode:
         <ModeButtons />

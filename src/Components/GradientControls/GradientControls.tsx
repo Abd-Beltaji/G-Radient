@@ -1,55 +1,40 @@
 import { useState, FC, useEffect } from "react";
 import { generateLinearGradient } from "generateGradientCode";
 import "./GradientControls.css";
-import { controls, setControls } from "App";
+import {
+  controls,
+  setControls,
+  activeControlIndex,
+  setActiveControlIndex,
+  controlElements,
+  setControlElements,
+} from "App";
+
+import ColorsPanel from "./colorsPanel/colorsPanel";
+
 interface IControlElement {
   color: string;
   stop: number;
   index: number;
-  setGradient: React.Dispatch<React.SetStateAction<string>>;
-}
-interface IGradientControls {
-  //   controls: {
-  //     color: string;
-  //     stop: number;
-  //   }[];
-  //   setControls: React.Dispatch<
-  //     React.SetStateAction<
-  //       {
-  //         color: string;
-  //         stop: number;
-  //       }[]
-  //     >
-  //   >;
 }
 
 const clamp = (value: number, min: number, max: number): number => {
   return value < min ? min : value > max ? max : value;
 };
 
-const ControlElement: FC<IControlElement> = ({
-  color,
-  stop,
-  index,
-  setGradient,
-}) => {
+let gradientCode: string,
+  setgradientCode: React.Dispatch<React.SetStateAction<string>>;
+
+const ControlElement: FC<IControlElement> = ({ color, stop, index }) => {
   const [stopValue, setStop] = useState(stop);
   const [, setActive] = useState(false);
 
   useEffect(() => {
-    setControls((controls) => {
-      //   controls[index].stop = stopValue;
-      return controls.map((c, i) =>
-        i == index ? { color: c.color, stop: stopValue } : c
-      );
-    });
-    setGradient(
-      generateLinearGradient({
-        angle: 90,
-        colors: controls,
-      })
+    setControls((controls) =>
+      controls.map((c, i) =>
+        i === index ? { color: c.color, stop: stopValue } : c
+      )
     );
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stopValue]);
   useEffect(() => {
@@ -77,12 +62,15 @@ const ControlElement: FC<IControlElement> = ({
   }, []);
   return (
     <div
-      className="control"
+      className={`control${index === activeControlIndex ? " active" : ""} `}
       style={{
         backgroundColor: color,
         left: `${stopValue}%`,
       }}
-      onMouseDown={() => setActive(true)}
+      onMouseDown={() => {
+        setActive(true);
+        setActiveControlIndex(index);
+      }}
       onMouseUp={() => setActive(false)}
       draggable="false"
       onDragStart={(evt) => evt.preventDefault()}
@@ -90,33 +78,51 @@ const ControlElement: FC<IControlElement> = ({
     ></div>
   );
 };
-const GradientControls: FC<IGradientControls> = () => {
-  let [gradientCode, setgradientCode] = useState(
+const GradientControls: FC = () => {
+  [gradientCode, setgradientCode] = useState(
     `linear-gradient(90deg ,blue 0%, green 50%, red 100%)`
   );
+  useEffect(() => {
+    setControlElements(
+      controls.map((control, i) => {
+        return (
+          <ControlElement
+            color={control.color}
+            stop={control.stop}
+            key={`${control.color}-i`}
+            index={i}
+          />
+        );
+      })
+    );
+  }, []);
+
+  useEffect(() => {
+    console.table(controls);
+    setgradientCode(
+      generateLinearGradient({
+        angle: 90,
+        colors: controls,
+      })
+    );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [controls]);
   return (
-    <div id="gradientControls">
-      <div
-        className="gradientView"
-        style={{
-          //   background: `linear-gradient(90deg ,blue 0%, green 50%, red 100%)`,
-          background: gradientCode,
-        }}
-      ></div>
-      <div className="controls">
-        {controls.map((control, i) => {
-          return (
-            <ControlElement
-              color={control.color}
-              stop={control.stop}
-              key={i}
-              index={i}
-              setGradient={setgradientCode}
-            />
-          );
-        })}
+    <div id="allControls">
+      <div id="gradientControls">
+        <div
+          className="gradientView"
+          style={{
+            background: gradientCode,
+          }}
+        ></div>
+        <div className="controls">{controlElements}</div>
+      </div>
+      <div className="otherControls">
+        <ColorsPanel />
       </div>
     </div>
   );
 };
 export default GradientControls;
+export { gradientCode, setgradientCode, ControlElement };
