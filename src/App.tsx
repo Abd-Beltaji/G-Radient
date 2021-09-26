@@ -7,6 +7,14 @@ import {
   generateLinearGradient,
   generateRadialGradient,
 } from "generateGradientCode";
+import { asRGB, rgb2hsv } from "utils";
+import {
+  setHue,
+  setLight,
+  setOpacity,
+  setOpacityColor,
+  setSaturation,
+} from "Components/GradientControls/colorPicker/colorPicker";
 let controls: { color: string; stop: number }[],
   setControls: React.Dispatch<
     React.SetStateAction<
@@ -62,6 +70,22 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [controls, mode]);
 
+  useEffect(() => {
+    let [r, g, b, a] = asRGB([...controls][activeControlIndex].color);
+    let [h, s, v] = rgb2hsv(r, g, b);
+    setHue(h / 3.6);
+    setSaturation(s * 100);
+    setLight((100 * v) / 255);
+    setOpacity(a * 100);
+
+    setOpacityColor(
+      `hsl(${Math.round(h)}deg,${Math.round(s * 100)}%,${Math.round(
+        (50 * v) / 255
+      )}%)`
+    );
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeControlIndex]);
+
   [controlElements, setControlElements] = useState([<div></div>]);
 
   return (
@@ -82,5 +106,5 @@ export {
   activeControlIndex,
   setActiveControlIndex,
   controlElements,
-  setControlElements
+  setControlElements,
 };
