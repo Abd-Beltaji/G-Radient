@@ -24,10 +24,29 @@ let hue: number,
   setOpacityColor: React.Dispatch<React.SetStateAction<string>>,
   setOpacity: React.Dispatch<React.SetStateAction<number>>;
 
+let r: number,
+  g: number,
+  b: number,
+  a: number,
+  h: number,
+  s: number,
+  l: number,
+  setR: React.Dispatch<React.SetStateAction<number>>,
+  setG: React.Dispatch<React.SetStateAction<number>>,
+  setB: React.Dispatch<React.SetStateAction<number>>,
+  setA: React.Dispatch<React.SetStateAction<number>>,
+  setH: React.Dispatch<React.SetStateAction<number>>,
+  setS: React.Dispatch<React.SetStateAction<number>>,
+  setL: React.Dispatch<React.SetStateAction<number>>;
 const updateControls = () => {
   setControls((prevControls) => {
     let controls = [...prevControls];
-    let color = hsv2hex(hue / 100, saturation / 100, light / 100, opacity/100);
+    let color = hsv2hex(
+      hue / 100,
+      saturation / 100,
+      light / 100,
+      opacity / 100
+    );
     // let color = `hsl(${hue*3.6}deg, ${saturation}%, ${light /2}%)`;
     controls[activeControlIndex].color = color;
     return controls;
@@ -46,6 +65,16 @@ const updateControls = () => {
   });
 };
 
+const updateColorValues = () => {
+  setH(Math.round(hue * 3.6));
+  setS(+saturation.toFixed(2));
+  setL(+light.toFixed(2));
+  let [r, g, b] = hsv2rgb(hue / 100, saturation / 100, light / 100);
+  setR(+r.toFixed(2));
+  setG(+g.toFixed(2));
+  setB(+b.toFixed(2));
+  setA(+(opacity / 100).toFixed(2));
+};
 const LightSaturationWheel: FC = () => {
   [light, setLight] = useState(100);
   [saturation, setSaturation] = useState(100);
@@ -72,6 +101,7 @@ const LightSaturationWheel: FC = () => {
       setOpacityColor(
         hsv2rgb(hue * 3.6, saturation / 100, light / 100).join(",")
       );
+      updateColorValues();
     }
   });
 
@@ -119,6 +149,7 @@ const Hue: FC = () => {
       setOpacityColor(
         hsv2rgb(hue / 100, saturation / 100, light / 100).join(",")
       );
+      updateColorValues();
     }
   });
 
@@ -165,6 +196,7 @@ const Opacity: FC = () => {
       setOpacity(
         100 - clamp(100 * ((evt.clientX - rect.x) / rect.width), 0, 100)
       );
+      updateColorValues();
     }
   });
 
@@ -201,20 +233,83 @@ const Opacity: FC = () => {
   );
 };
 
-const ColorPicker: FC = () => {
+const ColorsArea: FC = () => {
+  [r, setR] = useState(255);
+  [g, setG] = useState(0);
+  [b, setB] = useState(0);
+  [a, setA] = useState(0.5);
+
+  [h, setH] = useState(260);
+  [s, setS] = useState(90);
+  [l, setL] = useState(80);
+
   // useEffect(() => {
-  //   setControls((prevControls) => {
-  //     let controls = [...prevControls];
-  //     let color = hsv2hex(hue * 3.6, saturation / 100, light / 100, opacity);
-  //     console.log(color)
-  //     // controls[activeControlIndex].color = color;
-  //     return controls;
-  //   });
+
   // }, [hue, saturation, light, opacity]);
+
+  return (
+    <div id="colorValues">
+      <div data-value="r">
+        <input
+          type="text"
+          value={r}
+          onChange={(evt) => setR(clamp(+evt.target.value, 0, 255))}
+        />
+      </div>
+      <div data-value="g">
+        <input
+          type="text"
+          value={g}
+          onChange={(evt) => setG(clamp(+evt.target.value, 0, 255))}
+        />
+      </div>
+      <div data-value="b">
+        <input
+          type="text"
+          value={b}
+          onChange={(evt) => setB(clamp(+evt.target.value, 0, 255))}
+        />
+      </div>
+      <div data-value="a">
+        <input
+          type="text"
+          value={a}
+          onChange={(evt) => setA(clamp(+evt.target.value, 0, 1))}
+        />
+      </div>
+      <div className="seperator"></div>
+      <div data-value="h">
+        <input
+          type="text"
+          value={h}
+          onChange={(evt) => setH(clamp(+evt.target.value, 0, 360))}
+        />
+      </div>
+      <div data-value="s">
+        <input
+          type="text"
+          value={s}
+          onChange={(evt) => setS(clamp(+evt.target.value, 0, 100))}
+        />
+      </div>
+      <div data-value="l">
+        <input
+          type="text"
+          value={l}
+          onChange={(evt) => setL(clamp(+evt.target.value, 0, 100))}
+        />
+      </div>
+    </div>
+  );
+};
+
+const ColorPicker: FC = () => {
   return (
     <div id="colorPicker">
       <div className="controlsArea">
-        <div className="colorValues">Color</div>
+        <div className="colorValues">
+          <ColorsArea />
+        </div>
         <div className="hue">
           <Hue />
         </div>
@@ -230,5 +325,12 @@ const ColorPicker: FC = () => {
 };
 
 export default ColorPicker;
-export { setHue, setLight, setOpacityColor, setSaturation, setOpacity };
+export {
+  setHue,
+  setLight,
+  setOpacityColor,
+  setSaturation,
+  setOpacity,
+  updateColorValues,
+};
 // 9c000064

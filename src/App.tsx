@@ -14,6 +14,7 @@ import {
   setOpacity,
   setOpacityColor,
   setSaturation,
+  updateColorValues,
 } from "Components/GradientControls/colorPicker/colorPicker";
 let controls: { color: string; stop: number }[],
   setControls: React.Dispatch<
@@ -37,12 +38,20 @@ const App = () => {
 
   [controls, setControls] = useState([
     {
-      color: "#0099ff",
+      color: "#0aff03",
       stop: 0,
     },
     {
       color: "#00009e",
-      stop: 50,
+      stop: 30,
+    },
+    {
+      color: "#ff009c",
+      stop: 60,
+    },
+    {
+      color: "#9f1a30",
+      stop: 80,
     },
     {
       color: "#7210f3",
@@ -83,6 +92,7 @@ const App = () => {
         (50 * v) / 255
       )}%)`
     );
+    updateColorValues()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeControlIndex]);
 

@@ -11,7 +11,40 @@
       flex: 100;
     }
     .colorValues {
-      background-color: yellow;
+      position: relative;
+      #colorValues {
+        .seperator {
+          max-width: 1px;
+          margin: 0 1em;
+        }
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        div {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          input {
+            text-align: center;
+            color: #1a1a5c;
+            width: 90%;
+            height: 60%;
+            border: solid #4646a8 2px;
+            border-radius: 0.4em;
+            font-weight: bold;
+          }
+          &::after {
+            content: attr(data-value);
+            display: block;
+            color: #4646a8;
+            font-weight: bold;
+          }
+        }
+      }
     }
     .hue {
       display: flex;
@@ -34,8 +67,6 @@
         );
         border-radius: 0.5em;
         filter: drop-shadow(rgba(0, 0, 0, 0.5) 1px 6px 10px);
-        // border: solid 0.152em #fff;
-        //   box-shadow: 0 0 0 4px #111;
         .pointer {
           display: inline-block;
           width: 0.6em;
@@ -44,7 +75,7 @@
           background-color: red;
           border: solid 0.152em #fff;
           box-shadow: 0 0 0 4px #111;
-          cursor: move;
+          cursor: e-resize;
           position: absolute;
           top: 50%;
           transform: translate(-50%, -50%);
@@ -74,7 +105,7 @@
           background-color: transparent;
           border: solid 0.152em #fff;
           box-shadow: 0 0 0 4px #111;
-          cursor: move;
+          cursor: e-resize;
           position: absolute;
           top: 50%;
           transform: translate(-50%, -50%);
@@ -83,9 +114,6 @@
         }
       }
     }
-    // .opacity {
-    //   background-color: purple;
-    // }
   }
   .colorArea {
     width: 40%;
@@ -101,6 +129,7 @@
         linear-gradient(to right, #fff, #ffffff00);
       filter: drop-shadow(rgba(0, 0, 0, 0.5) 1px 6px 10px);
       .pointer {
+        cursor: move;
         height: 0.7em;
         width: 0.7em;
         border: solid 2px #fff;

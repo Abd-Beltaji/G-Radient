@@ -1,101 +1,117 @@
 #colorPicker {
   display: flex;
   justify-content: space-around; }
-
-#colorPicker .controlsArea {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: stretch;
-  align-items: stretch; }
-
-#colorPicker .controlsArea div {
-  flex: 100; }
-
-#colorPicker .controlsArea .colorValues {
-  background-color: yellow; }
-
-#colorPicker .controlsArea .hue {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative; }
-
-#colorPicker .controlsArea .hue .hueController {
-  height: 75%;
-  width: 100%;
-  margin: 0 0.3em;
-  background: linear-gradient(to right, red 0%, #ff0 17%, lime 33%, cyan 50%, blue 66%, #f0f 83%, red 100%);
-  border-radius: 0.5em;
-  filter: drop-shadow(rgba(0, 0, 0, 0.5) 1px 6px 10px); }
-
-#colorPicker .controlsArea .hue .hueController .pointer {
-  display: inline-block;
-  width: 0.6em;
-  height: 100%;
-  border-radius: 10em;
-  background-color: red;
-  border: solid 0.152em #fff;
-  box-shadow: 0 0 0 4px #111;
-  cursor: move;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  filter: drop-shadow(rgba(0, 0, 0, 0.671) 0 1px 4px);
-  transition: 0s; }
-
-#colorPicker .controlsArea .opacity {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative; }
-
-#colorPicker .controlsArea .opacity .opacityController {
-  position: relative;
-  height: 75%;
-  width: 100%;
-  margin: 0 0.3em;
-  background: linear-gradient(to right, #8855ff, transparent);
-  border-radius: 0.5em;
-  filter: drop-shadow(rgba(0, 0, 0, 0.5) 1px 6px 10px); }
-
-#colorPicker .controlsArea .opacity .opacityController .pointer {
-  display: inline-block;
-  width: 0.6em;
-  height: 100%;
-  border-radius: 10em;
-  background-color: transparent;
-  border: solid 0.152em #fff;
-  box-shadow: 0 0 0 4px #111;
-  cursor: move;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  filter: drop-shadow(rgba(0, 0, 0, 0.671) 0 1px 4px);
-  transition: 0s; }
-
-#colorPicker .colorArea {
-  width: 40%;
-  display: flex;
-  justify-content: center;
-  align-items: center; }
-
-#colorPicker .colorArea .colorGradient {
-  border-radius: 0.5em;
-  height: 95%;
-  width: 95%;
-  background-color: #0000ff;
-  background-image: linear-gradient(to top, #000, #ffffff00), linear-gradient(to right, #fff, #ffffff00);
-  filter: drop-shadow(rgba(0, 0, 0, 0.5) 1px 6px 10px); }
-
-#colorPicker .colorArea .colorGradient .pointer {
-  height: 0.7em;
-  width: 0.7em;
-  border: solid 2px #fff;
-  border-radius: 1em;
-  box-shadow: #000 0 0 0 3px;
-  position: absolute;
-  top: 50%;
-  left: 60%;
-  transform: translate(-50%, -50%);
-  filter: drop-shadow(rgba(0, 0, 0, 0.5) 1px 6px 10px); }
+  #colorPicker .controlsArea {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch; }
+    #colorPicker .controlsArea div {
+      flex: 100; }
+    #colorPicker .controlsArea .colorValues {
+      position: relative; }
+      #colorPicker .controlsArea .colorValues #colorValues {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+        #colorPicker .controlsArea .colorValues #colorValues .seperator {
+          max-width: 1px;
+          margin: 0 1em; }
+        #colorPicker .controlsArea .colorValues #colorValues div {
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center; }
+          #colorPicker .controlsArea .colorValues #colorValues div input {
+            text-align: center;
+            color: #1a1a5c;
+            width: 90%;
+            height: 60%;
+            border: solid #4646a8 2px;
+            border-radius: 0.4em;
+            font-weight: bold; }
+          #colorPicker .controlsArea .colorValues #colorValues div::after {
+            content: attr(data-value);
+            display: block;
+            color: #4646a8;
+            font-weight: bold; }
+    #colorPicker .controlsArea .hue {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative; }
+      #colorPicker .controlsArea .hue .hueController {
+        height: 75%;
+        width: 100%;
+        margin: 0 0.3em;
+        background: linear-gradient(to right, red 0%, #ff0 17%, lime 33%, cyan 50%, blue 66%, #f0f 83%, red 100%);
+        border-radius: 0.5em;
+        filter: drop-shadow(rgba(0, 0, 0, 0.5) 1px 6px 10px); }
+        #colorPicker .controlsArea .hue .hueController .pointer {
+          display: inline-block;
+          width: 0.6em;
+          height: 100%;
+          border-radius: 10em;
+          background-color: red;
+          border: solid 0.152em #fff;
+          box-shadow: 0 0 0 4px #111;
+          cursor: e-resize;
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          filter: drop-shadow(rgba(0, 0, 0, 0.671) 0 1px 4px);
+          transition: 0s; }
+    #colorPicker .controlsArea .opacity {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative; }
+      #colorPicker .controlsArea .opacity .opacityController {
+        position: relative;
+        height: 75%;
+        width: 100%;
+        margin: 0 0.3em;
+        background: linear-gradient(to right, #8855ff, transparent);
+        border-radius: 0.5em;
+        filter: drop-shadow(rgba(0, 0, 0, 0.5) 1px 6px 10px); }
+        #colorPicker .controlsArea .opacity .opacityController .pointer {
+          display: inline-block;
+          width: 0.6em;
+          height: 100%;
+          border-radius: 10em;
+          background-color: transparent;
+          border: solid 0.152em #fff;
+          box-shadow: 0 0 0 4px #111;
+          cursor: e-resize;
+          position: absolute;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          filter: drop-shadow(rgba(0, 0, 0, 0.671) 0 1px 4px);
+          transition: 0s; }
+  #colorPicker .colorArea {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    #colorPicker .colorArea .colorGradient {
+      border-radius: 0.5em;
+      height: 95%;
+      width: 95%;
+      background-color: #0000ff;
+      background-image: linear-gradient(to top, #000, #ffffff00), linear-gradient(to right, #fff, #ffffff00);
+      filter: drop-shadow(rgba(0, 0, 0, 0.5) 1px 6px 10px); }
+      #colorPicker .colorArea .colorGradient .pointer {
+        cursor: move;
+        height: 0.7em;
+        width: 0.7em;
+        border: solid 2px #fff;
+        border-radius: 1em;
+        box-shadow: #000 0 0 0 3px;
+        position: absolute;
+        top: 50%;
+        left: 60%;
+        transform: translate(-50%, -50%);
+        filter: drop-shadow(rgba(0, 0, 0, 0.5) 1px 6px 10px); }

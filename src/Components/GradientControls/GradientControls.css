@@ -40,7 +40,7 @@
         background-color: blue;
         border: solid 0.152em #fff;
         box-shadow: 0 0 0 4px #111;
-        cursor: move;
+        cursor: e-resize;
         position: absolute;
         top: 50%;
         transform: translate(-50%, -50%);
@@ -70,6 +70,8 @@
           font-weight: bold;
           box-shadow: rgba(0, 0, 0, 0.212) 0 1px 4px; }
   #allControls .otherControls {
+    min-height: 35vh;
+    max-height: 35vh;
     margin-top: -3em;
     padding: 0 3em 1em 3em;
     display: flex;

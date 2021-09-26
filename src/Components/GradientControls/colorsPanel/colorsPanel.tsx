@@ -35,8 +35,34 @@ const Item: React.FC<IItem> = ({ color, stop, index }) => {
         });
       }}
     >
-      <div>
-        <XIcon />
+      <div className="deleteKey">
+        <XIcon
+          onClick={() => {
+            if (controls.length < 3) return;
+            setControls((prevControls) => {
+              return [...prevControls]
+                .map((control, i) =>
+                  i === index ? { color: "DELETE", stop: 0 } : control
+                )
+                .filter((c) => c.color !== "DELETE");
+              // let newControls = [...prevControls];
+              // // delete newControls[index];
+              // return newControls;
+            });
+            setControlElements(() => {
+              return controls.map((control, i) => {
+                return (
+                  <ControlElement
+                    color={control.color}
+                    stop={control.stop}
+                    key={`${control.stop}-${control.color}-i`}
+                    index={i}
+                  />
+                );
+              });
+            });
+          }}
+        />
       </div>
       <div className="colorView" style={{ backgroundColor: color }}></div>
       <div>
