@@ -168,7 +168,7 @@ const GradientControls: FC = () => {
               className="gradient second"
               style={{ backgroundImage: outputCode }}
             >
-              G-Radient
+              G-Radiant
             </div>
           </div>
           <div className="section">
