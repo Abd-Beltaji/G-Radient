@@ -1,7 +1,9 @@
 import { getMode, default as Header } from "./Components/Header/Header";
 import GradientViewer from "Components/GradientViewer/viewer";
-import GradientControls from "Components/GradientControls/GradientControls";
-import { useState, useEffect } from "react";
+import GradientControls, {
+  setOutputCode,
+} from "Components/GradientControls/GradientControls";
+import React, { useState, useEffect } from "react";
 
 import {
   generateLinearGradient,
@@ -33,38 +35,60 @@ let mode: string, setMode: React.Dispatch<React.SetStateAction<string>>;
 
 let activeControlIndex: number,
   setActiveControlIndex: React.Dispatch<React.SetStateAction<number>>;
+
+let angle: number, setAngle: React.Dispatch<React.SetStateAction<number>>;
 const App = () => {
+  [angle, setAngle] = useState(90);
   [mode, setMode] = useState("radial");
 
   [controls, setControls] = useState([
     {
-      color: "#0aff03",
+      color: "#bd03ffff",
       stop: 0,
     },
     {
-      color: "#00009e",
-      stop: 30,
+      color: "#009e71ff",
+      stop: 31,
     },
     {
-      color: "#ff009c",
-      stop: 60,
+      color: "#22b526ff",
+      stop: 68,
     },
     {
-      color: "#9f1a30",
-      stop: 80,
-    },
-    {
-      color: "#7210f3",
+      color: "#7210f3ff",
       stop: 100,
-    },
+    }
+   
   ]);
+  // [controls, setControls] = useState([
+  //   {
+  //     color: "#0aff03",
+  //     stop: 0,
+  //   },
+  //   {
+  //     color: "#00009e",
+  //     stop: 30,
+  //   },
+  //   {
+  //     color: "#ff009c",
+  //     stop: 60,
+  //   },
+  //   {
+  //     color: "#9f1a30",
+  //     stop: 80,
+  //   },
+  //   {
+  //     color: "#7210f3",
+  //     stop: 100,
+  //   },
+  // ]);
 
   [activeControlIndex, setActiveControlIndex] = useState(0);
   const [gradientCode, setGradientCode] = useState("");
 
   useEffect(() => {
     let mode = getMode();
-    setGradientCode(
+    let newCode =
       mode === "radial"
         ? generateRadialGradient({
             colors: controls,
@@ -73,11 +97,12 @@ const App = () => {
           })
         : generateLinearGradient({
             colors: controls,
-            angle: 90,
-          })
-    );
+            angle,
+          });
+    setGradientCode(newCode);
+    setOutputCode(newCode);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [controls, mode]);
+  }, [controls, mode, angle]);
 
   useEffect(() => {
     let [r, g, b, a] = asRGB([...controls][activeControlIndex].color);
@@ -92,8 +117,8 @@ const App = () => {
         (50 * v) / 255
       )}%)`
     );
-    updateColorValues()
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    updateColorValues();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeControlIndex]);
 
   [controlElements, setControlElements] = useState([<div></div>]);
@@ -117,4 +142,6 @@ export {
   setActiveControlIndex,
   controlElements,
   setControlElements,
+  angle,
+  setAngle,
 };

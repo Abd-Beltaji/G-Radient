@@ -1,4 +1,11 @@
 .colorsPanel {
+  .headings{
+    font-weight: bolder;
+    padding-bottom: 0.5em;
+    display:flex;
+    // padding-left: 1em;
+    justify-content: space-around;
+  }
   overflow-y: scroll;
   flex: 50;
   .control.active {
@@ -13,9 +20,19 @@
     padding: 0.5em;
     border-radius: 1em;
     display: flex;
+    justify-content: space-around;
     align-items: center;
     gap: 0.5em;
+    position: relative;
+    .stopValue{
+      // border:solid #111 1px;
+      padding: 0.2em 0.5em;
+      text-align: center;
+      border-radius: 0.3em;
+    }
     .deleteKey{
+      position: absolute;
+      left: 0.5em;
       cursor: pointer;
     }
     .deleteKey:hover svg path{
@@ -27,8 +44,6 @@
       width: 2em;
       border-radius: 0.5em;
       margin: 0.5em 0;
-      // border: #fff 2px solid;
-      // box-shadow: #111 0 0 0 2px;
     }
     input {
       padding: 0.2em 0.5em;
@@ -36,8 +51,9 @@
       border-radius: 0.3em;
       border: solid 1px #444;
       height: 100%;
+      width: 100%;
       font-weight: bold;
-      height: 2em;
+      // height: 2em;
       font-size: 1em;
       background-color: transparent;
     }

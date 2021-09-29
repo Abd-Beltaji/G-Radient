@@ -4,77 +4,169 @@
   border-radius: 2em;
   transform: translateY(2em);
   filter: drop-shadow(rgba(0, 0, 0, 0.486) 0 4px 8px); }
-  #allControls #gradientControls {
-    background: #fff;
-    height: 9em;
-    border-radius: 2em;
-    margin: 0 1em;
-    transform: translateY(-50%);
-    filter: drop-shadow(rgba(0, 0, 0, 0.486) 0 4px 8px);
-    position: relative;
-    padding: 3em; }
-    #allControls #gradientControls .gradientView {
-      height: 3em;
-      width: 100%;
-      border-radius: 0.5em;
-      border: solid 0.2em #fff;
-      box-shadow: 0 0 0 4px #111; }
-    #allControls #gradientControls .controls {
-      position: relative;
-      height: 3em;
-      width: 100%;
-      transform: translateY(-100%);
-      cursor: pointer; }
-      #allControls #gradientControls .controls .control.active {
-        box-shadow: 0 0 0 4px #180935, 0 0 0 7px #4646a8; }
-        #allControls #gradientControls .controls .control.active:before {
-          background: #000; }
-        #allControls #gradientControls .controls .control.active:after {
-          border: solid 2px #4646a8;
-          color: #4646a8; }
-      #allControls #gradientControls .controls .control {
-        display: inline-block;
-        width: 0.8em;
-        height: 120%;
-        border-radius: 10em;
-        background-color: blue;
-        border: solid 0.152em #fff;
-        box-shadow: 0 0 0 4px #111;
-        cursor: e-resize;
-        position: absolute;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        filter: drop-shadow(rgba(0, 0, 0, 0.671) 0 1px 4px);
-        transition: 0s; }
-        #allControls #gradientControls .controls .control:before {
-          content: "";
-          height: 0.5em;
-          width: 0.5em;
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translate(-50%, 210%) rotate(45deg);
-          background: #444; }
-        #allControls #gradientControls .controls .control:after {
-          content: attr(data-value) "%";
-          background: #fff;
-          border: solid 2px #444;
-          color: #222;
-          padding: 0.4em 0.6em;
-          position: absolute;
-          font-size: 0.8em;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, 130%);
-          border-radius: 0.8em;
-          font-weight: bold;
-          box-shadow: rgba(0, 0, 0, 0.212) 0 1px 4px; }
-  #allControls .otherControls {
-    min-height: 35vh;
-    max-height: 35vh;
-    margin-top: -3em;
-    padding: 0 3em 1em 3em;
-    display: flex;
-    gap: 0.5em; }
-    #allControls .otherControls #colorPicker {
-      flex: 100; }
+
+#allControls #gradientControls {
+  background: #fff;
+  height: 9em;
+  border-radius: 2em;
+  margin: 0 1em;
+  transform: translateY(-50%);
+  filter: drop-shadow(rgba(0, 0, 0, 0.486) 0 4px 8px);
+  position: relative;
+  padding: 3em; }
+
+#allControls #gradientControls .gradientView {
+  height: 3em;
+  width: 100%;
+  border-radius: 0.5em;
+  border: solid 0.2em #fff;
+  box-shadow: 0 0 0 4px #111; }
+
+#allControls #gradientControls .controls {
+  position: relative;
+  height: 3em;
+  width: 100%;
+  transform: translateY(-100%);
+  cursor: pointer; }
+
+#allControls #gradientControls .controls .control.active {
+  box-shadow: 0 0 0 4px #180935, 0 0 0 7px #4646a8; }
+
+#allControls #gradientControls .controls .control.active:before {
+  background: #000; }
+
+#allControls #gradientControls .controls .control.active:after {
+  border: solid 2px #4646a8;
+  color: #4646a8; }
+
+#allControls #gradientControls .controls .control {
+  display: inline-block;
+  width: 0.8em;
+  height: 120%;
+  border-radius: 10em;
+  background-color: blue;
+  border: solid 0.152em #fff;
+  box-shadow: 0 0 0 4px #111;
+  cursor: e-resize;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(rgba(0, 0, 0, 0.671) 0 1px 4px);
+  transition: 0s; }
+
+#allControls #gradientControls .controls .control:before {
+  content: "";
+  height: 0.5em;
+  width: 0.5em;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 210%) rotate(45deg);
+  background: #444; }
+
+#allControls #gradientControls .controls .control:after {
+  content: attr(data-value) "%";
+  background: #fff;
+  border: solid 2px #444;
+  color: #222;
+  padding: 0.4em 0.6em;
+  position: absolute;
+  font-size: 0.8em;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 130%);
+  border-radius: 0.8em;
+  font-weight: bold;
+  box-shadow: rgba(0, 0, 0, 0.212) 0 1px 4px; }
+
+#allControls .otherControls {
+  min-height: 35vh;
+  max-height: 35vh;
+  margin-top: -3em;
+  padding: 0 3em 1em 3em;
+  display: flex;
+  gap: 0.5em; }
+
+#allControls .otherControls #colorPicker {
+  flex: 100; }
+
+#allControls .moreControls {
+  background: #fff;
+  padding: 1em;
+  border-top: solid #ccc 1px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center; }
+
+#allControls .moreControls .gradientOverview {
+  flex: 100;
+  margin-left: 1em; }
+
+#allControls .moreControls .gradientOverview .section {
+  margin-top: 1em;
+  display: flex;
+  gap: 1em; }
+
+#allControls .moreControls .gradientOverview .section .code {
+  background-color: #0c1318;
+  flex: 50;
+  border-radius: 2em;
+  padding: 2em;
+  border: solid 1px #999;
+  font-weight: bold;
+  color: #999; }
+
+#allControls .moreControls .gradientOverview .section .code .attr {
+  color: #3c3ed8; }
+
+#allControls .moreControls .gradientOverview .section .code .value, #allControls .moreControls .gradientOverview .section .code .stop {
+  color: #cd21dd; }
+
+#allControls .moreControls .gradientOverview .section .code .function {
+  color: #18ce55; }
+
+#allControls .moreControls .gradientOverview .section .code .colorValue {
+  padding-left: 1em;
+  margin: 0.3em; }
+
+#allControls .moreControls .gradientOverview .section .code .colorValue .color {
+  padding: 0.1em 0.3em;
+  border-radius: 5em;
+  display: inline-block; }
+
+#allControls .moreControls .gradientOverview .section .code .colorValue .color::before {
+  content: '';
+  display: inline-block;
+  height: 1em;
+  width: 1em;
+  background-color: var(--colorValue); }
+
+#allControls .moreControls .gradientOverview .section .gradient {
+  border-radius: 2em;
+  flex: 50;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30vh; }
+
+#allControls .moreControls .gradientOverview .section .gradient.second {
+  font-family: Arial;
+  font-weight: 1000;
+  font-size: 5em;
+  background-clip: text;
+  color: transparent; }
+
+@media screen and (max-width: 800px) {
+  .otherControls {
+    min-height: 80vh !important;
+    max-height: 80vh !important;
+    flex-direction: column; }
+  .otherControls #colorPicker {
+    min-height: 50vh;
+    flex-direction: column; }
+  .otherControls #colorPicker .controlsArea {
+    height: 25vh;
+    width: 100%; }
+  .otherControls #colorPicker .colorArea {
+    height: 25vh;
+    width: 100%; } }

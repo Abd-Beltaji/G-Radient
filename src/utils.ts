@@ -79,19 +79,21 @@ export function asRGB(color: string): [number, number, number, number] {
 }
 
 export function hsv2hex(h: number, s: number, l: number, a: number) {
-    console.log(h,s,l)
+  console.log(h, s, l);
   let [r, g, b] = hsv2rgb(h, s, l);
-//   console.log(r,g,b)
-  let color = `#${
-        ("0" + Math.round(r).toString(16)).slice(-2)
-    }${
-        ("0" + Math.round(g).toString(16)).slice(-2)
-    }${
-        ("0" + Math.round(b).toString(16)).slice(-2)
-    }${
-        ("0" + Math.round(a*255).toString(16)).slice(-2)
-    }`
-// alert(r+" "+g+" "+b)
-// return `rgb(${r},${g},${b},${a})`
+  let color = `#${("0" + Math.round(r).toString(16)).slice(-2)}${(
+    "0" + Math.round(g).toString(16)
+  ).slice(-2)}${("0" + Math.round(b).toString(16)).slice(-2)}${(
+    "0" + Math.round(a * 255).toString(16)
+  ).slice(-2)}`;
+
   return color;
+}
+
+export function randomColor() {
+  return `#${("0" + Math.round(Math.random() * 255).toString(16)).slice(-2)}${(
+    "0" + Math.round(Math.random() * 255).toString(16)
+  ).slice(-2)}${("0" + Math.round(Math.random() * 255).toString(16)).slice(
+    -2
+  )}`;
 }

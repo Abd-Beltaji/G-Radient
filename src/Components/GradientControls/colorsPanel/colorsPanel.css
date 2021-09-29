@@ -1,39 +1,63 @@
 .colorsPanel {
   overflow-y: scroll;
   flex: 50; }
-  .colorsPanel .control.active {
-    background-color: #ececec;
-    border: solid 1px #c2c2c2; }
-    .colorsPanel .control.active .colorView {
-      border: solid #fff 3px;
-      box-shadow: #111 0 0 0 3px; }
-  .colorsPanel .control {
-    padding: 0.5em;
-    border-radius: 1em;
-    display: flex;
-    align-items: center;
-    gap: 0.5em; }
-    .colorsPanel .control .deleteKey {
-      cursor: pointer; }
-    .colorsPanel .control .deleteKey:hover svg path {
-      fill: #4646a8;
-      box-shadow: rgba(0, 0, 0, 0.486) 1px 2px 5px; }
-    .colorsPanel .control .colorView {
-      height: 2em;
-      width: 2em;
-      border-radius: 0.5em;
-      margin: 0.5em 0; }
-    .colorsPanel .control input {
-      padding: 0.2em 0.5em;
-      text-align: center;
-      border-radius: 0.3em;
-      border: solid 1px #444;
-      height: 100%;
-      font-weight: bold;
-      height: 2em;
-      font-size: 1em;
-      background-color: transparent; }
-    .colorsPanel .control input.stop {
-      width: 3.5em; }
-    .colorsPanel .control input.color {
-      width: 6.5em; }
+
+.colorsPanel .headings {
+  font-weight: bolder;
+  padding-bottom: 0.5em;
+  display: flex;
+  justify-content: space-around; }
+
+.colorsPanel .control.active {
+  background-color: #ececec;
+  border: solid 1px #c2c2c2; }
+
+.colorsPanel .control.active .colorView {
+  border: solid #fff 3px;
+  box-shadow: #111 0 0 0 3px; }
+
+.colorsPanel .control {
+  padding: 0.5em;
+  border-radius: 1em;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5em;
+  position: relative; }
+
+.colorsPanel .control .stopValue {
+  padding: 0.2em 0.5em;
+  text-align: center;
+  border-radius: 0.3em; }
+
+.colorsPanel .control .deleteKey {
+  position: absolute;
+  left: 0.5em;
+  cursor: pointer; }
+
+.colorsPanel .control .deleteKey:hover svg path {
+  fill: #4646a8;
+  box-shadow: rgba(0, 0, 0, 0.486) 1px 2px 5px; }
+
+.colorsPanel .control .colorView {
+  height: 2em;
+  width: 2em;
+  border-radius: 0.5em;
+  margin: 0.5em 0; }
+
+.colorsPanel .control input {
+  padding: 0.2em 0.5em;
+  text-align: center;
+  border-radius: 0.3em;
+  border: solid 1px #444;
+  height: 100%;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1em;
+  background-color: transparent; }
+
+.colorsPanel .control input.stop {
+  width: 3.5em; }
+
+.colorsPanel .control input.color {
+  width: 6.5em; }

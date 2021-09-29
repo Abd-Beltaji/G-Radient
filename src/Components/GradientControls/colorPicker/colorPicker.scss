@@ -33,14 +33,15 @@
             color: #1a1a5c;
             width: 90%;
             height: 60%;
-            border: solid #4646a8 2px;
+            border: 1px solid #444;
+            box-shadow: rgba(0, 0, 0, 0.486) 0 1px 4px;
             border-radius: 0.4em;
             font-weight: bold;
           }
           &::after {
             content: attr(data-value);
             display: block;
-            color: #4646a8;
+            color: #111;
             font-weight: bold;
           }
         }

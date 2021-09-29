@@ -3,11 +3,9 @@ import {
   setControls,
   activeControlIndex,
   setActiveControlIndex,
-  setControlElements,
 } from "App";
 import { ReactComponent as XIcon } from "assets/svg/xIcon.svg";
 
-import { ControlElement } from "../GradientControls";
 import "./colorsPanel.css";
 interface IItem {
   color: string;
@@ -21,20 +19,9 @@ const Item: React.FC<IItem> = ({ color, stop, index }) => {
       className={`control${activeControlIndex === index ? " active" : ""}`}
       onMouseDown={() => {
         setActiveControlIndex(index);
-        setControlElements(() => {
-          return controls.map((control, i) => {
-            return (
-              <ControlElement
-                color={control.color}
-                stop={control.stop}
-                key={`${control.stop}-${control.color}-i`}
-                index={i}
-              />
-            );
-          });
-        });
       }}
     >
+      
       <div className="deleteKey">
         <XIcon
           onClick={() => {
@@ -45,21 +32,6 @@ const Item: React.FC<IItem> = ({ color, stop, index }) => {
                   i === index ? { color: "DELETE", stop: 0 } : control
                 )
                 .filter((c) => c.color !== "DELETE");
-              // let newControls = [...prevControls];
-              // // delete newControls[index];
-              // return newControls;
-            });
-            setControlElements(() => {
-              return controls.map((control, i) => {
-                return (
-                  <ControlElement
-                    color={control.color}
-                    stop={control.stop}
-                    key={`${control.stop}-${control.color}-i`}
-                    index={i}
-                  />
-                );
-              });
             });
           }}
         />
@@ -76,25 +48,12 @@ const Item: React.FC<IItem> = ({ color, stop, index }) => {
               newControls[index].color = evt.target.value;
               return newControls;
             });
-            setControlElements(() => {
-              let newControls = [...controls];
-              newControls[index].color = evt.target.value;
-              return newControls.map((control, i) => {
-                return (
-                  <ControlElement
-                    color={control.color}
-                    stop={control.stop}
-                    key={`${control.stop}-${control.color}-i`}
-                    index={i}
-                  />
-                );
-              });
-            });
           }}
         />
       </div>
-      <div>
-        <input
+      <div className="stopValue">
+      {stop + "%"}
+        {/* <input
           type="text"
           value={stop + "%"}
           className="stop"
@@ -107,25 +66,8 @@ const Item: React.FC<IItem> = ({ color, stop, index }) => {
               );
               return newControls;
             });
-            setControlElements(() => {
-              let newControls = [...controls];
-              newControls[index].stop = +evt.target.value.replace(
-                /[^0-9]/g,
-                ""
-              );
-              return newControls.map((control, i) => {
-                return (
-                  <ControlElement
-                    color={control.color}
-                    stop={control.stop}
-                    key={`${control.stop}-${control.color}-i`}
-                    index={i}
-                  />
-                );
-              });
-            });
           }}
-        />
+        /> */}
       </div>
     </div>
   );
@@ -134,6 +76,11 @@ const Item: React.FC<IItem> = ({ color, stop, index }) => {
 const ColorsPanel: React.FC = () => {
   return (
     <div className="colorsPanel">
+      <div className="headings">
+        <div>Color</div>
+        <div>Hex</div>
+        <div>Stop</div>
+        </div>
       {[...controls]
         .map((control, i) => (
           <Item color={control.color} stop={control.stop} key={i} index={i} />

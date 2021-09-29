@@ -6,9 +6,7 @@ import {
   controls,
   activeControlIndex,
   setControls,
-  setControlElements,
 } from "App";
-import { ControlElement } from "../GradientControls";
 const clamp = (value: number, min: number, max: number): number => {
   return value < min ? min : value > max ? max : value;
 };
@@ -47,21 +45,8 @@ const updateControls = () => {
       light / 100,
       opacity / 100
     );
-    // let color = `hsl(${hue*3.6}deg, ${saturation}%, ${light /2}%)`;
     controls[activeControlIndex].color = color;
     return controls;
-  });
-  setControlElements(() => {
-    return controls.map((control, i) => {
-      return (
-        <ControlElement
-          color={control.color}
-          stop={control.stop}
-          key={`${control.stop}-${control.color}-i`}
-          index={i}
-        />
-      );
-    });
   });
 };
 
@@ -182,7 +167,7 @@ const Hue: FC = () => {
 
 const Opacity: FC = () => {
   [opacityColor, setOpacityColor] = useState(
-    controls[activeControlIndex].color
+    activeControlIndex <controls.length-1?controls[activeControlIndex].color:"#0099ff"
   );
   let [, setActive] = useState(false);
   [opacity, setOpacity] = useState(100);
@@ -242,10 +227,6 @@ const ColorsArea: FC = () => {
   [h, setH] = useState(260);
   [s, setS] = useState(90);
   [l, setL] = useState(80);
-
-  // useEffect(() => {
-
-  // }, [hue, saturation, light, opacity]);
 
   return (
     <div id="colorValues">
@@ -333,4 +314,4 @@ export {
   setOpacity,
   updateColorValues,
 };
-// 9c000064
+
